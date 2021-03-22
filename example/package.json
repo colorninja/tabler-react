@@ -13,7 +13,7 @@
     "react-dom": "^16.4.2",
     "react-google-maps": "^9.4.5",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.4",
+    "react-scripts": "^4.0.3",
     "react-simple-maps": "^0.12.0",
     "react-syntax-highlighter": "^10.0.0",
     "refractor": "^2.6.1",
