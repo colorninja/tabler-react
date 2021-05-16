@@ -6,12 +6,12 @@ import DropdownTrigger from "./DropdownTrigger.react";
 import DropdownMenu from "./DropdownMenu.react";
 import DropdownItem from "./DropdownItem.react";
 import DropdownItemDivider from "./DropdownItemDivider.react";
+import * as ReactIs from 'react-is';
 
 import ClickOutside from "../../helpers/ClickOutside.react";
 
-import { Manager } from "react-popper";
-
-import type { Placement } from "react-popper";
+import type {Placement} from "react-popper";
+import {Manager} from "react-popper";
 
 type DefaultProps = {|
   +children?: React.Node,
@@ -170,6 +170,7 @@ class Dropdown extends React.Component<Props, State> {
     e: SyntheticMouseEvent<HTMLElement>,
     callback?: (SyntheticMouseEvent<*>) => mixed
   ) => {
+    console.log('closing dropdown');
     this.setState({ isOpen: false });
     if (callback) {
       callback(e);
@@ -236,7 +237,26 @@ class Dropdown extends React.Component<Props, State> {
     })();
 
     const items = (() => {
-      if (props.items) return props.items;
+      if (props.items) {
+        let items = props.items;
+
+        // Check for fragment (used as an array)
+        if(ReactIs.isFragment(items)) {
+          items = React.Children.toArray(items.props.children);
+        }
+
+        // Check for a single dropdown item
+        if(!Array.isArray(items)) {
+          items = [items];
+        }
+
+        // Filter all falsey items (undefined or `{condition && <DrodownItem/>}` syntax)
+        // and add close handler
+        return items.filter(x => !!x).map(item => React.cloneElement(item, {
+          ...item.props,
+          onClick: e => this._handleItemClick(e, item.props.onClick)
+        }));
+      }
       if (props.itemsObject) {
         const { itemsObject, itemsRootComponent } = props;
         return itemsObject.map(
