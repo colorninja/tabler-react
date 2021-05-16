@@ -170,7 +170,6 @@ class Dropdown extends React.Component<Props, State> {
     e: SyntheticMouseEvent<HTMLElement>,
     callback?: (SyntheticMouseEvent<*>) => mixed
   ) => {
-    console.log('closing dropdown');
     this.setState({ isOpen: false });
     if (callback) {
       callback(e);
