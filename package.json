@@ -1,6 +1,6 @@
 {
   "name": "@colorninja/tabler-react",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "author": "jonthomp and AaronCoplan",
   "license": "MIT",
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "react-is": "^17.0.2",
     "react-popper": "^1.3.11",
     "react-text-mask": "^5.4.1"
   },
