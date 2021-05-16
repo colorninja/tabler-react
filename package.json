@@ -48,7 +48,7 @@
     "flow-bin": "^0.89.0",
     "flow-copy-source": "^2.0.9",
     "postcss": "^8.2.8",
-    "react": "^16.14.0",
+    "react": "^17.0.2",
     "react-dom": "^16.14.0",
     "react-scripts": "^4.0.3",
     "rollup": "^2.42.3",
